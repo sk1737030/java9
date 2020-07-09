@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>javax.imageio.stream.ImageOutputStream</OriginalElement>
+  <nodes>
+    <node x="311.5" y="224.0">java.io.DataOutput</node>
+    <node x="20.0" y="112.0">java.io.Closeable</node>
+    <node x="191.0" y="112.0">java.io.DataInput</node>
+    <node x="0.0" y="0.0">java.lang.AutoCloseable</node>
+    <node x="171.0" y="336.0">javax.imageio.stream.ImageOutputStream</node>
+    <node x="70.5" y="224.0">javax.imageio.stream.ImageInputStream</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="javax.imageio.stream.ImageInputStream" target="java.io.DataInput">
+      <point x="55.25" y="-31.0" />
+      <point x="236.25" y="199.0" />
+      <point x="266.5" y="199.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="javax.imageio.stream.ImageOutputStream" target="java.io.DataOutput">
+      <point x="57.75" y="-31.0" />
+      <point x="344.25" y="311.0" />
+      <point x="392.0" y="311.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="javax.imageio.stream.ImageOutputStream" target="javax.imageio.stream.ImageInputStream">
+      <point x="-57.75" y="-31.0" />
+      <point x="228.75" y="311.0" />
+      <point x="181.0" y="311.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="java.io.Closeable" target="java.lang.AutoCloseable">
+      <point x="0.0" y="-31.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="javax.imageio.stream.ImageInputStream" target="java.io.Closeable">
+      <point x="-55.25" y="-31.0" />
+      <point x="125.75" y="199.0" />
+      <point x="95.5" y="199.0" />
+      <point x="0.0" y="31.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="236.5" y="199.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
