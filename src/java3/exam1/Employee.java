@@ -1,8 +1,10 @@
 package java3.exam1;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class Employee implements Measurable {
 
     private String name;

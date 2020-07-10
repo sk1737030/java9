@@ -40,20 +40,4 @@ public interface IntSequence {
         };
     }
 
-    static IntSequence constant(int i, IntConsumer intConsumer) {
-
-        intConsumer.accept(i);
-        
-        return new IntSequence() {
-            @Override
-            public boolean hasNext() {
-                return true;
-            }
-
-            @Override
-            public int next() {
-                return i;
-            }
-        };
-    }
 }
