@@ -1,10 +1,17 @@
+import java3.exam8.Exam8;
 import java4.exam1.Labeledpoint;
 import java4.exam1.Point;
 import java4.exam4.Rectangle;
 import java4.exam6.DisCountedItem;
 import java4.exam6.Item;
+import java4.exam7.Color;
+import java4.exam8.ClassToString;
+import java4.exam9.TReplication;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.lang.reflect.GenericArrayType;
+import java.util.Optional;
 
 public class Chapter04Test {
 
@@ -65,5 +72,37 @@ public class Chapter04Test {
         Assert.assertNotEquals(z, x);
     }
 
+    @Test
+    public void exam7() {
+        Color color = Color.BLUE;
+
+        Assert.assertEquals("BLUE", color.name());
+    }
+
+    @Test
+    public void exam8() {
+        System.out.println("---- 참조타입 ---- ");
+        String a = "8";
+        ClassToString.toString(a.getClass());
+
+        System.out.println("--- 기본 타입----");
+        ClassToString.toString(char.class.getClass());
+
+        System.out.println("---- 스트링 배열 ---- ");
+        String[] c = {"String", "ABC"};
+        ClassToString.toString(c.getClass());
+
+        System.out.println("---- 이너 클래스 ---- ");
+        ClassToString.toString(ClassToString.InnerClass.class);
+
+        System.out.println("---- 제너릭타입  ----- ");
+        ClassToString.toString(Optional.class);
+    }
+
+    @Test
+    public void exam9() throws IllegalAccessException {
+        Item item = new Item("Item" , 1000);
+        TReplication.toString(item);
+    }
 
 }
