@@ -8,7 +8,7 @@ public class TReplication {
     public static <T> void toString(T t) throws IllegalAccessException {
         StringBuilder builder = new StringBuilder();
 
-        for(Field field : t.getClass().getDeclaredFields()){
+        for (Field field : t.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             Object obj = field.get(t);
 
