@@ -154,7 +154,7 @@ public class Chapter04Test {
     public void exam13() throws Exception {
         System.out.println("test");
 
-        Class<?> claszz = Class.forName("java.lang.System");
+        Class<?> claszz = Class.forName("java.lang.Sysztem");
 
         Field field = claszz.getField("out");
         Object out = field.get(null);
