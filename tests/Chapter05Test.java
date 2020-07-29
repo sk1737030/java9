@@ -1,3 +1,4 @@
+import java5.exam09.Exam09;
 import java5.exam1toexam3.Exam1;
 import java5.exam4.Exam4;
 import java5.exam4.ReturnErrorCode;
@@ -5,8 +6,14 @@ import java5.exam5.Exam5;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Chapter05Test {
 
@@ -52,10 +59,65 @@ public class Chapter05Test {
         try {
             exam5.copy("C:\\ch05\\double.t333xt", "test");
         } catch (Exception e) {
-            System.out.println("이리로왔따.");
+            System.out.println("ComeHere");
             e.printStackTrace();
         }
 
     }
 
+    @Test
+    public void exam06a() {
+        BufferedReader in = null;
+        try {
+            in = Files.newBufferedReader(Paths.get("C:\\ch05\\double.t333xt"), StandardCharsets.UTF_8);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void exam06b() {
+        BufferedReader in = null;
+        try {
+            try {
+                in = Files.newBufferedReader(Paths.get("C:\\ch05\\double.t333xt"), StandardCharsets.UTF_8);
+            } finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void exam06c() {
+
+        try (BufferedReader in = Files.newBufferedReader(Paths.get("C:\\ch05\\double.t333xt"), StandardCharsets.UTF_8)) {
+            // in
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void exam09() {
+        Exam09 exam09 = new Exam09();
+        exam09.readWithAutoClose("C:\\ch05\\double.txt");
+    }
 }
