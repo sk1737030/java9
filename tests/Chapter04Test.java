@@ -27,8 +27,8 @@ public class Chapter04Test {
         java4.exam2.Point point = new java4.exam2.Point(12.5, 10.5);
         java4.exam2.Labeledpoint labeledpoint = new java4.exam2.Labeledpoint("one", 30.5, 50.5);
 
-        Assert.assertEquals(true, point.equals(new java4.exam2.Point(12.5, 10.5)));
-        Assert.assertEquals(false, point.equals(new java4.exam2.Point(88.5, 11.5)));
+        Assert.assertEquals(point, new java4.exam2.Point(12.5, 10.5));
+        Assert.assertNotEquals(point, new java4.exam2.Point(88.5, 11.5));
 
         Assert.assertEquals(point.hashCode(), new java4.exam2.Point(12.5, 10.5).hashCode());
         Assert.assertNotEquals(point.hashCode(), new java4.exam2.Point(166.5, 110.5).hashCode());
@@ -147,7 +147,7 @@ public class Chapter04Test {
             method.invoke(point, point2);
         }
         second = System.currentTimeMillis();
-        System.out.println( second - first) ;
+        System.out.println(second - first);
     }
 
     @Test

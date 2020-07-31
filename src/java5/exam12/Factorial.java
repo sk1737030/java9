@@ -1,4 +1,4 @@
-package java5;
+package java5.exam12;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;

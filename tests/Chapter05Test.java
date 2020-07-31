@@ -1,6 +1,8 @@
-import java5.Factorial;
+import java5.exam12.Factorial;
 import java5.exam09.Exam09;
 import java5.exam13.MinValues;
+import java5.exam14.CustomLogging;
+import java5.exam15.CustomFormatter;
 import java5.exam1toexam3.Exam1;
 import java5.exam4.Exam4;
 import java5.exam4.ReturnErrorCode;
@@ -13,6 +15,11 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -141,5 +148,33 @@ public class Chapter05Test {
         System.out.println(estimatedTime);
     }
 
+    @Test
+    public void exam14() {
+        Logger logger = Logger.getLogger("java9.java5");
+        logger.setLevel(Level.FINE);
+        logger.setUseParentHandlers(false);
 
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.FINE);
+        logger.addHandler(handler);
+        logger.setFilter(new CustomLogging("sex", "c++"));
+
+        String[] filters = {"sex", "man", "girl", "boy", "c++"};
+
+        Arrays.stream(filters).forEach(s -> logger.log(Level.FINE, s));
+    }
+
+    @Test
+    public void exam15() {
+        Logger logger = Logger.getLogger("java9.java5");
+        logger.setUseParentHandlers(false); // 상위전파를 막기위해
+
+        Handler handler = new ConsoleHandler();
+        handler.setFormatter(new CustomFormatter());
+        logger.addHandler(handler);
+
+        String[] filters = {"sex", "man", "girl", "boy", "c++"};
+
+        logger.info(Arrays.toString(filters));
+    }
 }

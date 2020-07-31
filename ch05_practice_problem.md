@@ -102,6 +102,7 @@ public class Exam4 {
     }
 }
 </pre>
+
 <pre>
 @Test
 public void exam04() {
@@ -327,10 +328,7 @@ public class Exam09 {
 }
 </pre> 
   
-<<<<<<< HEAD
-  
-  
-=======
+
 ##### 10. Scanner와 PrintWriter 클래스의 메서드는 초보 개발자가 사용하기 쉽게 하려고 검사 예외를 던지지 않는다. 읽기나 쓰기 도중에 오류가 일어났는지 일어나지 않았는지 어떻게 알 수 있을까? 생성자는 검사 예외를 던질 수 있다는 점에 주의해야 한다. 이 점이 초보자가 사용하기 쉽게 만든다는 목표를 저해하는 이유를 설명하라.
  
 <pre>
@@ -439,4 +437,84 @@ public class MinValues extends ClassLoader {
 </pre>
 assert 단정을 켯을 때 -ea 1064100
 assert 단정을 껏을 때 -da 804500
->>>>>>> fa36a0f... 문제 추가 5장 추가 13번까지
+ 
+##### 14. 섹스(sex), 마약(drug), C++와 같은 나쁜 단어를 담고 있는 로그 레코드를 걸러내는 로그 레코드 필터를 구현하고 테스트하라.
+<pre>
+@Test
+public void exam14() {
+    Logger logger = Logger.getLogger("java9.java5");
+    logger.setLevel(Level.FINE);
+    logger.setUseParentHandlers(false);
+    
+    Handler handler = new ConsoleHandler();
+    handler.setLevel(Level.FINE);
+    logger.addHandler(handler);
+    logger.setFilter(new CustomLogging("sex", "c++"));
+    
+    String[] filters = {"sex", "man", "girl", "boy", "c++"};
+    
+    Arrays.stream(filters).forEach(s -> logger.log(Level.FINE, s));
+}
+</pre>
+
+##### 15.HTML 파일을 만들어내는 로그 레코드 서식 지정자를 구현하고 테스트하라.
+<pre>
+...
+
+public class CustomFormatter extends Formatter {
+    @Override
+    public String getHead(Handler h) {
+        String header = "<html>";
+        header += "<!DOCTYPE html>";
+        header += "<head><meta charset=\"UTF-8\"></head>";
+        header += "<body>";
+
+        header += "<table border=\"1\">";
+        header += "<tr>";
+        header += "<th>level</th>";
+        header += "<th>time</th>";
+        header += "<th>message</th>";
+        header += "</tr>";
+        return header;
+    }
+
+    @Override
+    public String format(LogRecord record) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<tr>");
+        stringBuilder.append("<td> ");
+        stringBuilder.append(record.getLoggerName());
+        stringBuilder.append("</td>");
+        stringBuilder.append("<td>");
+        stringBuilder.append(new Date(record.getMillis()));
+        stringBuilder.append("</td>");
+        stringBuilder.append("<td>");
+        stringBuilder.append(record.getMessage());
+        stringBuilder.append("</td>");
+
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String getTail(Handler h) {
+        return "</table></body></html>";
+    }
+}
+
+@Test
+public void exam15() {
+    Logger logger = Logger.getLogger("java9.java5");
+    logger.setUseParentHandlers(false); // 상위전파를 막기위해
+
+    Handler handler = new ConsoleHandler();
+    handler.setFormatter(new CustomFormatter());
+    logger.addHandler(handler);
+
+    String[] filters = {"sex", "man", "girl", "boy", "c++"};
+
+    logger.info(Arrays.toString(filters));
+}
+</pre>
+
+
+  
